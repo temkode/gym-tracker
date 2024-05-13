@@ -1,0 +1,12 @@
+<div>
+  <h1 class="uppercase font-normal tracking-tight text-xl mb-4 sm:text-2xl flex justify-center">Edit Set</h1>
+
+  <%= render "form", exercise_set: @exercise_set %>
+
+  <%= link_to "Delete", exercise_set_path(@exercise_set), data: { 
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure you want to delete?"
+  },
+  class: "mt-4 uppercase px-3 py-3 flex items-center justify-center gap-2 rounded-sm outline outline-1 focus:scale-110 hover:scale-110 active:scale-105 transition"
+  %>
+</div>

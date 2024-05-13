@@ -1,0 +1,42 @@
+<%= form_with model: exercise_set do |form| %>
+  <div>
+    <%= form.label :weight_kg, "Weight" %><br>
+    <%= form.number_field :weight_kg, class: "w-72" %>
+    <% exercise_set.errors.full_messages_for(:weight_kg).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mt-3">
+    <%= form.label :reps %><br>
+    <%= form.number_field :reps, class: "w-72" %>
+    <% exercise_set.errors.full_messages_for(:reps).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mt-3">
+    <%= form.label :sets %><br>
+    <%= form.number_field :sets, class: "w-72" %>
+    <% exercise_set.errors.full_messages_for(:sets).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mt-3">
+    <%= form.label :exercise_id %><br>
+    <%= form.select :exercise_id, Exercise.all.collect { |e| [ e.name, e.id ] }, {include_blank: false}, {class: 'w-72'} %>
+  </div>
+
+  <div class="mt-3">
+    <%= form.label :difficulty %><br>
+    <%= form.select :difficulty, [["Move up", :easy], ["Medium", :medium], ["Hard", :hard]], {include_blank: false}, {class: 'w-72'}%>
+    <% exercise_set.errors.full_messages_for(:difficulty).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mt-8">
+    <%= form.submit class: "w-72 uppercase px-3 py-3 flex items-center justify-center gap-2 rounded-sm outline outline-1 focus:scale-110 hover:scale-110 active:scale-105 transition" %>
+  </div>
+<% end %>

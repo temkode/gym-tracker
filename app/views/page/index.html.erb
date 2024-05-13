@@ -1,0 +1,51 @@
+<div>
+  <header>
+    <h1 class="uppercase font-light tracking-tight text-4xl sm:text-6xl">Gym Tracker</h1>
+    <h2 class="font-medium mt-1">My personal app to track my gym activity</h2>
+  </header>
+
+  <section class="mt-36">
+    <div class="flex gap-4">
+      <%= link_to "Log a set", new_exercise_set_path, class: "uppercase px-3 py-3 flex items-center justify-center gap-2 rounded-sm outline w-32 focus:scale-110 hover:scale-110 active:scale-105 transition" %>
+      <%= link_to "Exercises", exercises_path, class: "uppercase px-3 py-3 flex items-center justify-center gap-2 rounded-sm outline w-32 focus:scale-110 hover:scale-110 active:scale-105 transition" %>
+    </div>
+  </section>
+
+  <section class="mt-16">
+    <h1 class="uppercase font-normal tracking-tight text-xl mb-4 sm:text-2xl">Latest Workouts</h1>
+    <div class="divide-y divide-slate-200">
+      <% @exercise_sets_by_day.each do |date, exercise_sets_for_day| %>
+        <div x-data="{ expanded: false }">
+          <h2>
+            <button
+              type="button"
+              class="flex items-center justify-between w-full text-left font-semibold py-3"
+              @click="expanded = !expanded"
+            >
+              <span><%= date.strftime("%A - %d/%m/%y") + " (#{exercise_sets_for_day.size} exercises)" %></span>
+              <svg class="fill-black-500 shrink-0 ml-8" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+                <rect y="7" width="16" height="2" rx="1" class="transform origin-center transition duration-200 ease-out" :class="{'!rotate-180': expanded}" />
+                <rect y="7" width="16" height="2" rx="1" class="transform origin-center rotate-90 transition duration-200 ease-out" :class="{'!rotate-180': expanded}" />
+              </svg>
+            </button>
+          </h2>
+          <div
+            role="region"
+            class="grid text-sm text-slate-600 overflow-hidden transition-all duration-300 ease-in-out"
+            :class="expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
+          >
+          <div class="overflow-hidden">
+            <% exercise_sets_for_day.each do |exercise_set| %>
+              <div class="pb-5 pt-1 flex justify-between">
+                <%= link_to exercise_set.exercise.name, edit_exercise_set_url(exercise_set.id) %>
+                <p class="font-thin">
+                  <%= "#{exercise_set.sets}x#{exercise_set.reps} #{exercise_set.weight_kg}kg " %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>

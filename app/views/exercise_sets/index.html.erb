@@ -1,0 +1,9 @@
+<h1 class="text-lg font-bold block">Exercise Sets</h1>
+
+<%= link_to "New Set", new_exercise_set_path %>
+
+<ul class="block">
+  <% @exercise_sets.each do |exercise_set| %>
+    <%= link_to exercise_set.exercise.name, exercise_set %>
+  <% end %>
+</ul>

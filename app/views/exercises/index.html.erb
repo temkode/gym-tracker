@@ -1,0 +1,11 @@
+<div>
+  <%= link_to "New Exercise", new_exercise_path, class: "mb-4 uppercase px-3 py-3 flex items-center justify-center gap-2 rounded-sm outline outline-1 focus:scale-110 hover:scale-110 active:scale-105 transition"%>
+
+  <h1 class="uppercase font-normal tracking-tight text-xl mb-2 sm:text-4xl flex justify-center">Exercises</h1>
+
+  <ul>
+    <% @exercises.each do |exercise| %>
+      <li class="mt-4"><%= link_to exercise.name, edit_exercise_url(exercise.id) %></li>
+    <% end %>
+  </ul>
+</div>

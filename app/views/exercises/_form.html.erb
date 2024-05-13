@@ -1,0 +1,31 @@
+<%= form_with model: exercise do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name, class: "w-72" %>
+    <% exercise.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mt-3">
+    <%= form.label :target, "Target Body Area" %><br>
+    <%= form.select :target, [["Upper Body", :upper_body], ["Lower Body", :lower_body], ["Cardio", :cardio]], {include_blank: false}, {class: 'w-72'} %>
+    <% exercise.errors.full_messages_for(:target).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :double_weight do %><br>
+      <%= form.check_box :double_weight, checked_value: :true, unchecked_value: :false %>
+      Double weighted
+    <% end %>
+    <% exercise.errors.full_messages_for(:double_weight).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="mt-8">
+    <%= form.submit class: "w-72 uppercase px-3 py-3 flex items-center justify-center gap-2 rounded-sm outline outline-1 focus:scale-110 hover:scale-110 active:scale-105 transition" %>
+  </div>
+<% end %>
