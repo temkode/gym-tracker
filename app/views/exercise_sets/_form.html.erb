@@ -31,7 +31,12 @@
   <div class="mt-3">
     <%= form.label :difficulty %><br>
     <%= form.select :difficulty, [["Move up", :easy], ["Medium", :medium], ["Hard", :hard]], {include_blank: false}, {class: 'w-72'}%>
-    <% exercise_set.errors.full_messages_for(:difficulty).each do |message| %>
+  </div>
+
+  <div class="mt-3">
+    <%= form.label :created_at, "Date" %><br>
+    <%= form.date_field :created_at, {value: exercise_set.created_at || Date.today, class: 'w-72'} %>
+    <% exercise_set.errors.full_messages_for(:created_at).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
