@@ -27,7 +27,7 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.find(params[:id])
 
     if @exercise.update(exercise_params)
-      redirect_to @exercise
+      redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
     end
