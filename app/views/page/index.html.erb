@@ -1,11 +1,13 @@
 <div>
   <header>
     <h1 class="uppercase font-light tracking-tight text-4xl sm:text-6xl">Gym Tracker</h1>
-    <h2 class="font-medium mt-1">My personal app to track my gym activity</h2>
+    <h2 class="font-medium mt-1">My personal app to track the cumulative weight I'm lifting</h2>
   </header>
+  
+  <section class="mt-8">
+    <%= line_chart ExerciseSet.group_by_day(:created_at).count, colors: ["#000"], points: false %>
 
-  <section class="mt-36">
-    <div class="flex gap-4">
+    <div class="mt-8 flex gap-8">
       <%= link_to "Log a set", new_exercise_set_path, class: "uppercase px-3 py-3 flex items-center justify-center gap-2 rounded-sm outline w-32 focus:scale-110 hover:scale-110 active:scale-105 transition" %>
       <%= link_to "Exercises", exercises_path, class: "uppercase px-3 py-3 flex items-center justify-center gap-2 rounded-sm outline w-32 focus:scale-110 hover:scale-110 active:scale-105 transition" %>
     </div>
