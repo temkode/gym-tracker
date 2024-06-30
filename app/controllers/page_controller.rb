@@ -1,8 +1,7 @@
 class PageController < ApplicationController
   def index
-    @exercise_sets_by_day = ExerciseSet.all
-      .group_by { |exercise_set| exercise_set.created_at.beginning_of_day }
-      .sort_by { |date, _| -date.to_i }
-      .take(5)
+    @exercise_sets_by_day = ExerciseSet.bruh.first(5)
+    # binding.pry
+    @cumulative_weights_data = ExerciseSet.cumulative_weights
   end
 end
