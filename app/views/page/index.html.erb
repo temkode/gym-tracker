@@ -5,7 +5,7 @@
   </header>
   
   <section class="mt-8">
-    <%= line_chart ExerciseSet.group_by_day(:created_at).count, colors: ["#000"], points: false %>
+    <%= area_chart @cumulative_weights_data, colors: ["#404040"], points: false %>
 
     <div class="mt-8 flex gap-8">
       <%= link_to "Log a set", new_exercise_set_path, class: "uppercase px-3 py-3 flex items-center justify-center gap-2 rounded-sm outline w-32 focus:scale-110 hover:scale-110 active:scale-105 transition" %>
